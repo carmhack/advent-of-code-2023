@@ -1,13 +1,24 @@
 const fs = require("fs").promises;
 const path = require('path');
 
+const STRING_TO_NUM = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+}
+
 function solveOne(lines) {
   let solution = 0;
   const totalLines = lines.length;
   for (let i = 0; i < totalLines; i++) {
     const line = lines[i];
     let numberAsString = "";
-    let number = 0;
     const lineLength = line.length;
     for (let j = 0; j < lineLength; j++) {
       const char = line[j];
@@ -15,14 +26,31 @@ function solveOne(lines) {
         numberAsString += char;
       }
     }
-    number = parseInt(numberAsString[0]+numberAsString[numberAsString.length-1]);
-    solution += number;
+    if (numberAsString.length > 0) {
+      solution += parseInt(numberAsString[0]+numberAsString.at(-1));
+    }
   }
   return solution;
 }
 
 function solveTwo(lines) {
-  return 0;
+  let solution = 0;
+  const totalLines = lines.length;
+  const strings = Object.keys(STRING_TO_NUM);
+
+  for (let i = 0; i < totalLines; i++) {
+    let line = lines[i];
+    
+    for (const str of strings) {
+      // due to cases like 'oneight' i leave the first and last char of every string number
+      // e.g. one => o1e, seven => s7n
+      line = line.replaceAll(str, `${str[0]}${STRING_TO_NUM[str]}${str.at(-1)}`);
+    }
+    
+    const match = line.match(/\d/g);
+    solution += parseInt(`${match[0]}${match.at(-1)}`);
+  }
+  return solution;
 }
 
 async function main() {
@@ -31,8 +59,9 @@ async function main() {
   const lines = input.split("\n");
 
   const solutionOne = solveOne(lines);
+  //console.log(solutionOne);
   const solutionTwo = solveTwo(lines);
-  console.log(solutionOne)
+  console.log(solutionTwo);
 }
 
 main();
