@@ -1,12 +1,8 @@
 const fs = require("fs").promises;
 const path = require('path');
 
-async function solve() {
-  const filePath = path.join(__dirname, 'input.txt');
-  const input = await fs.readFile(filePath, { encoding: "utf-8" });
-  const lines = input.split("\n");
-
-  let sum = 0;
+function solveOne(lines) {
+  let solution = 0;
   const totalLines = lines.length;
   for (let i = 0; i < totalLines; i++) {
     const line = lines[i];
@@ -20,9 +16,18 @@ async function solve() {
       }
     }
     number = parseInt(numberAsString[0]+numberAsString[numberAsString.length-1]);
-    sum += number;
+    solution += number;
   }
-  return sum;
+  return solution;
 }
 
-solve();
+async function main() {
+  const filePath = path.join(__dirname, 'input.txt');
+  const input = await fs.readFile(filePath, { encoding: "utf-8" });
+  const lines = input.split("\n");
+
+  const solutionOne = solveOne(lines);
+  const solutionTwo = solveTwo(lines);
+}
+
+main();
