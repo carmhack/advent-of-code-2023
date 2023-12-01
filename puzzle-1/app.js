@@ -21,6 +21,10 @@ function solveOne(lines) {
   return solution;
 }
 
+function solveTwo(lines) {
+  return 0;
+}
+
 async function main() {
   const filePath = path.join(__dirname, 'input.txt');
   const input = await fs.readFile(filePath, { encoding: "utf-8" });
@@ -28,6 +32,7 @@ async function main() {
 
   const solutionOne = solveOne(lines);
   const solutionTwo = solveTwo(lines);
+  console.log(solutionOne)
 }
 
 main();
