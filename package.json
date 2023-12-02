@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/carmhack/advent-of-code-2023.git"
   },
-  "keywords": ["advent of code", "2023", "javascript"],
+  "keywords": [
+    "advent of code",
+    "2023",
+    "javascript"
+  ],
   "author": "Adriano Grimaldi",
   "license": "ISC",
   "bugs": {
