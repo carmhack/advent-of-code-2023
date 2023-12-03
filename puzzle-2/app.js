@@ -73,6 +73,7 @@ async function main() {
   const input = await fs.readFile(filePath, { encoding: "utf-8" });
   const lines = input.split("\n");
 
+  console.log(__dirname);
   const solutionOne = solveOne(lines);
   console.log(solutionOne);
   const solutionTwo = solveTwo(lines);
