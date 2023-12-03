@@ -21,6 +21,7 @@ x 1 x
 x x x
 */
 function hasAdjacentSymbols(matrix, i, j) {
+  // console.log(`Check on ${matrix[i][j]}`);
   for (const indexes of adjacentIndexes) {
     const { x, y } = indexes;
     const newX = i + x;
@@ -30,8 +31,7 @@ function hasAdjacentSymbols(matrix, i, j) {
       matrix[newX][newY] !== undefined &&
       isSymbol(matrix[newX][newY])
     ) {
-      //console.log(`Check on ${matrix[i][j]}`);
-      //console.log(`Found symbol on ${newX}-${newY}: ${matrix[newX][newY]}`);
+      // console.log(`Found symbol on ${newX}-${newY}: ${matrix[newX][newY]}`);
       return true;
     }
   }
@@ -54,15 +54,17 @@ function solveOne(lines) {
           isValid = true;
         }
       } else {
-        // find symbol
         if (isValid) {
-          console.log(`${currentNumber} is a part`);
+          // console.log(`${currentNumber} is a part`);
           solution += parseInt(currentNumber);
         }
         
         currentNumber = "";
         isValid = false;
       }
+    }
+    if (isValid) {
+      solution += parseInt(currentNumber);
     }
   }
 
