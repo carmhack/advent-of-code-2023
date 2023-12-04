@@ -77,7 +77,7 @@ async function main() {
   const lines = input.split("\n");
 
   const solutionOne = solveOne(lines);
-  console.log(solutionOne); // current 506273
+  console.log(solutionOne);
 }
 
 main();
